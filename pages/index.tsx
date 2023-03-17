@@ -4,6 +4,10 @@ import Header from '../components/Header'
 import Row from '../components/Row'
 import { Movie } from '../typings'
 import requests from '../utils/requests'
+import useAuth from '../hooks/useAuth'
+import { useRecoilValue } from 'recoil'
+import { modalState } from '../atoms/modalAtom'
+import Modal from '../components/Modal'
 
 interface Props {
   netflixOriginals: Movie[]
@@ -27,6 +31,12 @@ const Home = ({
   topRated,
   trendingNow, 
 }: Props) => {
+  const { loading } = useAuth()
+  const showModal = useRecoilValue(modalState)
+
+  if (loading) return null
+
+
   return (
     <div className="relative h-screen bg-gradient-to-b lg:h-[140vh]">
       <Head>
@@ -45,9 +55,10 @@ const Home = ({
           <Row title="Scary Movies" movies={horrorMovies} />
           <Row title="Romance Movies" movies={romanceMovies} />
           <Row title="Documentaries" movies={documentaries} />
+          
     </section>
     </main>
-
+     {showModal && <Modal />}
     </div>
   )
 }
@@ -89,11 +100,16 @@ export const getServerSideProps = async () => {
    } 
 }
 
-{/* 1:24:20 */}
+{/* 23:19 */}
 
-{/* https://www.youtube.com/watch?v=cwqNAkwhKqw */}
+{/* https://www.youtube.com/watch?v=BbTyUo99Qvs */}
 
-{/* resolver o problema da falha das imagens 
-Image with src "https://image.tmdb.org/t/p/original/undefined" has legacy prop "layout". Did you forget to run the codemod?
-Read more: https://nextjs.org/docs/messages/next-image-upgrade-to-13
-upstream image response failed for https://image.tmdb.org/t/p/original/undefined 404 */}
+{/*<Image
+  src="https://rb.gy/p2hphi"
+  layout="fill"
+  className="-z-10 !hidden opacity-60 sm:!inline"
+  objectFit="cover"
+  alt=""
+/>*/}
+
+// Voltar em todos os videos e ver todas as plataformas e sites que ele indica!
