@@ -119,5 +119,3 @@ export const getServerSideProps = async () => {
     }
   }
 }
-
-// ORGANIZAR OS ARQUIVOS, LIBRARYS/SOFTWARES, VERCEL, PORTFOLIO
