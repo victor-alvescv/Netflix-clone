@@ -35,12 +35,17 @@ function Login() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <img
+        src="https://rb.gy/10lkb6"
+        className="absolute cursor-pointer object-cover h-[100vh] -z-10 !hidden opacity-60 sm:!inline"
+        width={1920}
+        height={1080}
+      />
+      <img
         src="https://rb.gy/ulxxee"
-        className="absolute left-4 top-4 cursor-pointer object-contain md:left-10 md:top-6"
+        className="absolute left-4 top-4 cursor-pointer object-contain md:left-10 md:top-6 "
         width={150}
         height={150}
       />
-
       <form
         className="relative mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14"
         onSubmit={handleSubmit(onSubmit)}

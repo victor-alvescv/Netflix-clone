@@ -6,8 +6,13 @@ import { Movie } from '../typings'
 import requests from '../utils/requests'
 import useAuth from '../hooks/useAuth'
 import { useRecoilValue } from 'recoil'
-import { modalState } from '../atoms/modalAtom'
+import { modalState, movieState } from '../atoms/modalAtom'
 import Modal from '../components/Modal'
+import Plans from '../components/Plans'
+import { getProducts, Product } from '@stripe/firestore-stripe-payments'
+import payments from '../lib/stripe'
+import useSubscription from '../hooks/useSubscription'
+import useList from '../hooks/useList'
 
 interface Props {
   netflixOriginals: Movie[]
@@ -18,6 +23,7 @@ interface Props {
   horrorMovies: Movie[]
   romanceMovies: Movie[]
   documentaries: Movie[]
+  products: Product[]
 }
 
 
@@ -30,11 +36,17 @@ const Home = ({
   romanceMovies,
   topRated,
   trendingNow, 
+  products,
 }: Props) => {
-  const { loading } = useAuth()
+  const { loading, user } = useAuth()
   const showModal = useRecoilValue(modalState)
+  const subscription = useSubscription(user)
+  const movie = useRecoilValue(movieState)
+  const list = useList(user?.uid)
 
-  if (loading) return null
+  if (loading || subscription === null) return null
+
+  if (!subscription) return <Plans products={products}/>
 
 
   return (
@@ -51,6 +63,7 @@ const Home = ({
           <Row title="Top Rated" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
           {/* My List */}
+          {list.length > 0 && <Row title="My List" movies={list} />}
           <Row title="Comedies" movies={comedyMovies} />
           <Row title="Scary Movies" movies={horrorMovies} />
           <Row title="Romance Movies" movies={romanceMovies} />
@@ -66,6 +79,12 @@ const Home = ({
 export default Home
 
 export const getServerSideProps = async () => {
+  const products = await getProducts(payments, {
+    includePrices: true,
+    activeOnly: true,
+  }).then((res) => res).catch((error) => console.log(error.message))
+
+
   const [
     netflixOriginals,
     trendingNow,
@@ -96,20 +115,14 @@ export const getServerSideProps = async () => {
       horrorMovies: horrorMovies.results,
       romanceMovies: romanceMovies.results,
       documentaries: documentaries.results,
+      products,
     }
    } 
 }
 
-{/* 23:19 */}
+// 2:23:54
 
-{/* https://www.youtube.com/watch?v=BbTyUo99Qvs */}
+// https://www.youtube.com/watch?v=rhvoRP63QVI
 
-{/*<Image
-  src="https://rb.gy/p2hphi"
-  layout="fill"
-  className="-z-10 !hidden opacity-60 sm:!inline"
-  objectFit="cover"
-  alt=""
-/>*/}
-
-// Voltar em todos os videos e ver todas as plataformas e sites que ele indica!
+// Problemas: Trailer que não existe nao tem mensagem, perfil database, confirmar todos os sites e instalações utilizadas, organizar os arquivos(autoformat), colocar o magnet e o link do github no portfolio,
+// limpar o terminal, login no vercel e deployment de todos os repositórios... ver se tem mais algumas coisas amanhã; Librarys used. No final tirar todos os perfils ativos e pagamentos, 
