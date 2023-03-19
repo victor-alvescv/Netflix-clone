@@ -27,7 +27,7 @@ interface Props {
 }
 
 
-const Home = ({ 
+const Home = ({
   netflixOriginals,
   actionMovies,
   comedyMovies,
@@ -35,7 +35,7 @@ const Home = ({
   horrorMovies,
   romanceMovies,
   topRated,
-  trendingNow, 
+  trendingNow,
   products,
 }: Props) => {
   const { loading, user } = useAuth()
@@ -46,7 +46,7 @@ const Home = ({
 
   if (loading || subscription === null) return null
 
-  if (!subscription) return <Plans products={products}/>
+  if (!subscription) return <Plans products={products} />
 
 
   return (
@@ -55,10 +55,10 @@ const Home = ({
         <title>Home - Netflix</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    <Header />
-    <main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
-      <Banner netflixOriginals={netflixOriginals} />
-    <section className='md:space-y-24'>
+      <Header />
+      <main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
+        <Banner netflixOriginals={netflixOriginals} />
+        <section className='md:space-y-24'>
           <Row title="Trending Now" movies={trendingNow} />
           <Row title="Top Rated" movies={topRated} />
           <Row title="Action Thrillers" movies={actionMovies} />
@@ -68,10 +68,10 @@ const Home = ({
           <Row title="Scary Movies" movies={horrorMovies} />
           <Row title="Romance Movies" movies={romanceMovies} />
           <Row title="Documentaries" movies={documentaries} />
-          
-    </section>
-    </main>
-     {showModal && <Modal />}
+
+        </section>
+      </main>
+      {showModal && <Modal />}
     </div>
   )
 }
@@ -105,7 +105,7 @@ export const getServerSideProps = async () => {
     fetch(requests.fetchDocumentaries).then((res) => res.json()),
   ])
 
-   return {
+  return {
     props: {
       netflixOriginals: netflixOriginals.results,
       trendingNow: trendingNow.results,
@@ -117,12 +117,7 @@ export const getServerSideProps = async () => {
       documentaries: documentaries.results,
       products,
     }
-   } 
+  }
 }
 
-// 2:23:54
-
-// https://www.youtube.com/watch?v=rhvoRP63QVI
-
-// Problemas: Trailer que não existe nao tem mensagem, perfil database, confirmar todos os sites e instalações utilizadas, organizar os arquivos(autoformat), colocar o magnet e o link do github no portfolio,
-// limpar o terminal, login no vercel e deployment de todos os repositórios... ver se tem mais algumas coisas amanhã; Librarys used. No final tirar todos os perfils ativos e pagamentos, 
+// ORGANIZAR OS ARQUIVOS, LIBRARYS/SOFTWARES, VERCEL, PORTFOLIO

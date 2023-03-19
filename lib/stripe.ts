@@ -1,9 +1,9 @@
 import {
     createCheckoutSession,
     getStripePayments,
-  } from '@stripe/firestore-stripe-payments'
-  import { getFunctions, httpsCallable } from '@firebase/functions'
-  import app from '../firebase'
+} from '@stripe/firestore-stripe-payments'
+import { getFunctions, httpsCallable } from '@firebase/functions'
+import app from '../firebase'
 
 const payments = getStripePayments(app, {
     productsCollection: 'products',
@@ -26,7 +26,7 @@ const goToBillingPortal = async () => {
 
     await functionRef({
         returnUrl: `${window.location.origin}/account`
-    }).then(({data}: any) => window.location.assign(data.url)).catch((error) => console.log(error.message))
+    }).then(({ data }: any) => window.location.assign(data.url)).catch((error) => console.log(error.message))
 }
 
 export { loadCheckout, goToBillingPortal }

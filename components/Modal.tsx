@@ -60,7 +60,7 @@ function Modal() {
 
   }, [movie])
 
-  
+
   // Find all the movies in the user's list
   useEffect(() => {
     if (user) {
@@ -87,8 +87,8 @@ function Modal() {
 
       toast(`${movie?.title || movie?.original_name} has been remove from My List`, {
         duration: 8000,
-        style: toastStyle,   
-         }
+        style: toastStyle,
+      }
       )
     } else {
       await setDoc(

@@ -56,9 +56,8 @@ function Login() {
             <input
               type="email"
               placeholder="Email"
-              className={`input ${
-                errors.email && 'border-b-2 border-orange-500'
-              }`}
+              className={`input ${errors.email && 'border-b-2 border-orange-500'
+                }`}
               {...register('email', { required: true })}
             />
             {errors.email && (
@@ -72,9 +71,8 @@ function Login() {
               type="password"
               {...register('password', { required: true })}
               placeholder="Password"
-              className={`input ${
-                errors.password && 'border-b-2 border-orange-500'
-              }`}
+              className={`input ${errors.password && 'border-b-2 border-orange-500'
+                }`}
             />
             {errors.password && (
               <p className="p-1 text-[13px] font-light  text-orange-500">
