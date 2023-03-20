@@ -127,7 +127,7 @@ function Modal() {
         </button>
 
         <div className="relative pt-[56.25%]">
-          <ReactPlayer className="pointer-events-none"
+          <ReactPlayer
             url={`https://www.youtube.com/watch?v=${trailer}`}
             width="100%"
             height="100%"
