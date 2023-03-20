@@ -139,20 +139,20 @@ function Modal() {
             <div className="flex space-x-2">
               <button className="flex items-center gap-x-2 rounded bg-white px-8 text-xl
                 font-bold text-black transition hover:bg-[#e6e6e6] cursor-not-allowed">
-                <FaPlay className="h-7 w-7 text-black" />
+                <FaPlay className="h-6 w-6 text-black" />
                 Play
               </button>
 
               <button className="modalButton" onClick={handleList}>
                 {addedToList ? (
-                  <CheckIcon className="h-7 w-7" />
+                  <CheckIcon className="h-6 w-6" />
                 ) : (
-                  <PlusIcon className="h-7 w-7" />
+                  <PlusIcon className="h-6 w-6" />
                 )}
               </button>
 
               <button className="modalButton cursor-not-allowed">
-                <ThumbUpIcon className="h-7 w-7" />
+                <ThumbUpIcon className="h-6 w-6" />
               </button>
             </div>
             <button className="modalButton" onClick={() => setMuted(!muted)}>
@@ -177,8 +177,8 @@ function Modal() {
                 HD
               </div>
             </div>
-            <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
-              <p className="w-5/6">{movie?.overview}</p>
+            <div className="flex flex-col gap-x-10 gap-y-4 font-light text-sm sm:text-lg md:flex-row">
+              <p className=" w-2/2 md:w-5/6">{movie?.overview}</p>
               <div className="flex flex-col space-y-3 text-sm">
                 <div>
                   <span className="text-[gray]">Genres:</span>{' '}

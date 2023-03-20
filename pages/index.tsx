@@ -50,7 +50,7 @@ const Home = ({
 
 
   return (
-    <div className="relative h-screen bg-gradient-to-b lg:h-[140vh]">
+    <div className="relative bg-gradient-to-b h-[55vh] md:h-[70vh] lg:h-[140vh]">
       <Head>
         <title>Home - Netflix</title>
         <link rel="icon" href="/favicon.ico" />
